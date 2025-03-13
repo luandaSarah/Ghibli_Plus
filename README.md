@@ -1,2 +1,2 @@
 # Ghibli_Plus
-A simple Netflix-like project for Studio Ghibli.
+A simple Netflix-like project for Ghibli Studio.
