@@ -31,6 +31,7 @@ class Autoloader
             $class = str_replace('App', 'app', $class);
         }
 
+        
         $filePath = __DIR__ . '/' . $class . '.php';
         // On vérifie si le fichier existe
         if (file_exists($filePath)) {
