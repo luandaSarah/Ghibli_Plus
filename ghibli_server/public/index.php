@@ -1,11 +1,14 @@
 <?php
 
-session_start();
-
 
 use App\Autoloader;
 use App\Database\Database;
 use Src\Http\Requests;
+use Src\Http\Responses;
+use Src\Http\Handler;
+
+
+
 
 require_once './Autoloader.php';
 
@@ -21,4 +24,13 @@ Autoloader::register();
 
 $request = Requests::create();
 
-// var_dump($request);
+// session_start();
+
+
+// $content = "hello world";
+$handler = new Handler();
+$response = $handler->handle($request);
+
+echo $response->send();
+
+// var_dump($response);
