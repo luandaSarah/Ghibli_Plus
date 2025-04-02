@@ -1,7 +1,7 @@
 <?php
 
 
-use App\Autoloader;
+use Root\Autoloader;
 use App\Database\Database;
 use Src\Http\Requests;
 use Src\Http\Responses;
@@ -10,7 +10,7 @@ use Src\Http\Handler;
 
 
 
-require_once './Autoloader.php';
+require_once '../Autoloader.php';
 
 Autoloader::register();
 
