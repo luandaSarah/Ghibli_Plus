@@ -2,32 +2,32 @@
 
 namespace Src\Http;
 
-use Src\Http\Requests as Requests;
-use Src\Http\Responses as Responses;
+use Closure;
+
+// use Src\Http\Handler as Handler;
 
 class Router
 {
-    public function Router(Requests $request): Responses
+    private array $routes = [];
+
+    //ajoute une nouvelle route 
+    public  function addRoute(string $url, Closure $handler): void
     {
+       
 
-        $httpMethod =  $request->getMethod();
-        $url =   $request->getUri();
+        $this->routes[$url] = $handler;
+    }
 
-        $url = str_replace("/ghibli_plus/ghibli_server/public/", "", $url);
 
-        $url = explode("/", $url);
-        if ($httpMethod === "GET") {
-
-            if (empty($url[0]) || empty($url[1]) || str_contains($url[0], "index")) {
-                $content = "HELLO WORLD";
-            } else {
-                if (preg_match('/^[0-9]+$/', $url[1])) {
-                    $content = "controller =>" . $url[0] . " id =>" . $url[1];
-                } else {
-                    $content = "Params two is not a number";
-                }
-            }
+    //verifie si la route existe 
+    public  function dispatch(string $url): string 
+    {
+        
+        if (array_key_exists($url, array: $this->routes)) {
+            $handler =   $this->routes[$url];
+            return call_user_func($handler);
+        } else {
+            return "Cette page n'existe pas";
         }
-        return new Responses($content);
     }
 }

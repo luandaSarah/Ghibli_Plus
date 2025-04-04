@@ -5,7 +5,7 @@ use Root\Autoloader;
 use App\Database\Database;
 use Src\Http\Requests;
 use Src\Http\Responses;
-use Src\Http\Router;
+use Src\Http\Handler;
 
 
 require_once '../Autoloader.php';
@@ -27,8 +27,8 @@ $request = Requests::create();
 
 
 // $content = "hello world";
-$router = new Router();
-$response = $router->Router($request);
+$handler = new Handler();
+$response = $handler->Handler($request);
 
 echo $response->send();
 
